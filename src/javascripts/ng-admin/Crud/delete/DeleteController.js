@@ -55,7 +55,9 @@ export default class DeleteController {
     }
 
     back() {
-        this.$window.history.back();
+//custom app does not support history.back()
+//        this.$window.history.back();
+        this.$state.go(this.$state.get('edit'), { entity: this.entity.name(), id: this.$scope.entry.identifierValue });
     }
 
     destroy() {

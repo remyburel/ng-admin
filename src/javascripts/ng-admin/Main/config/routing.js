@@ -120,7 +120,26 @@ function routing($stateProvider, $urlRouterProvider) {
         template: errorTemplate
     });
 
-    $urlRouterProvider.when('', '/dashboard');
+// custom app with special paths and no dashboard as a default
+//    $urlRouterProvider.when('', '/dashboard');
+    $urlRouterProvider.when('', ['$location','$document',function($location,$document) {
+        if($location.absUrl().indexOf('O0104F01') !== -1 || $document[0].title.indexOf('Person in charge information') !== -1 || $document[0].title.indexOf('担当者マスタメンテナンス') !== -1) {
+            return '/m_pic/list';
+        } else if($location.absUrl().indexOf('O0106F01') !== -1 || $document[0].title.indexOf('Subsidy information') !== -1 || $document[0].title.indexOf('補助金種別マスタメンテナンス') !== -1) {
+            return '/m_subsidy_type/list';
+        } else if($location.absUrl().indexOf('O0110F01') !== -1 || $document[0].title.indexOf('Tag information') !== -1 || $document[0].title.indexOf('タグマスタメンテナンス') !== -1) {
+            return '/m_tag/list';
+        } else if($location.absUrl().indexOf('O0109F01') !== -1 || $document[0].title.indexOf('Conservation Inspection Job information') !== -1 || $document[0].title.indexOf('保全点検作業マスタメンテナンス') !== -1) {
+            return '/m_conservation_inspection_job/list';
+        } else if($location.absUrl().indexOf('O0108F01') !== -1 || $document[0].title.indexOf('Conservation Inspection information') !== -1 || $document[0].title.indexOf('保全点検マスタメンテナンス') !== -1) {
+            return '/m_conservation_inspection/list';
+        } else if($location.absUrl().indexOf('O0105F01') !== -1 || $document[0].title.indexOf('Device information') !== -1 || $document[0].title.indexOf('機器マスタメンテナンス') !== -1) {
+            return '/m_device/list';
+        } else if($location.absUrl().indexOf('O0107F01') !== -1 || $document[0].title.indexOf('Job information') !== -1 || $document[0].title.indexOf('作業マスタメンテナンス') !== -1) {
+            return '/m_job/list';
+        }
+    }]);
+
 
     $urlRouterProvider.otherwise(function($injector, $location) {
         var state = $injector.get('$state');
