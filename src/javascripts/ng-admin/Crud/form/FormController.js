@@ -108,7 +108,8 @@ export default class FormController {
             ))
             .then(customHandlerReturnValue => {
                 if (customHandlerReturnValue === false) return;
-                $state.go(previousState.name, previousState.params)
+//                $state.go(previousState.name, previousState.params)
+                $state.go($state.get('list'), angular.extend({entity: this.entity.name()}, $state.params))
                     .then(() => progression.done())
                     .then(() => $translate('EDITION_SUCCESS'))
                     .then(text => notification.log(text, { addnCls: 'humane-flatty-success' }));
