@@ -20,9 +20,12 @@ export default function maBatchDeleteButtonDirective($state) {
             };
         },
         template:
-`<span ng-click="gotoBatchDelete()">
+//`<span ng-click="gotoBatchDelete()">
+//<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;<span class="hidden-xs" translate="{{ ::label }}"></span>
+//</span>`
+`<a class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ng-click="gotoBatchDelete()">
 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;<span class="hidden-xs" translate="{{ ::label }}"></span>
-</span>`
+</a>`
     };
 }
 
