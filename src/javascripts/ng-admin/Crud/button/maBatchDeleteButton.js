@@ -12,11 +12,12 @@ export default function maBatchDeleteButtonDirective($state) {
                 var ids = $scope.selection().map(function(entry) {
                     return entry.identifierValue;
                 });
-
-                $state.go('batchDelete', angular.extend({
-                    ids: ids,
-                    entity: $scope.entity().name()
-                }, $state.params));
+                if($scope.selection().length > 0) {
+                    $state.go('batchDelete', angular.extend({
+                        ids: ids,
+                        entity: $scope.entity().name()
+                    }, $state.params));
+                }
             };
         },
         template:
