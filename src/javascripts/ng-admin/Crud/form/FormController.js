@@ -77,7 +77,7 @@ export default class FormController {
                     view,
                     { $event, error, errorMessage, entity, entry, route, controller: this, form: this.form, progression, notification }
                 );
-                if (customHandlerReturnValue === false || error.status === 400) return;
+                if (customHandlerReturnValue === false || error.status === 400 || error.status === 409) return;
                 progression.done();
                 $translate(errorMessage, {
                     status: error && error.status,
@@ -123,7 +123,7 @@ export default class FormController {
                     view,
                     { $event, error, errorMessage, entity: this.entity, entry, controller: this, form: this.form, progression, notification }
                 );
-                if (customHandlerReturnValue === false || error.status === 400) return;
+                if (customHandlerReturnValue === false || error.status === 400 || error.status === 409) return;
                 progression.done();
                 $translate(errorMessage, {
                     status: error && error.status,
